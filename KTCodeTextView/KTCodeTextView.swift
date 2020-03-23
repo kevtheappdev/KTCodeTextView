@@ -7,10 +7,13 @@
 //
 
 import UIKit
-import Highlightr
 
-class KTCodeTextField: UITextView {
-    private var codeTextContainer: NSTextContainer? = nil
+class KTCodeTextView: UITextView {
+    private var codeTextContainer = KTSyntaxTextStorage()
+    
+    override var textStorage: NSTextStorage {
+        return codeTextContainer
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -20,8 +23,7 @@ class KTCodeTextField: UITextView {
     }
     
     private func highlight(Text text: String) -> NSAttributedString {
-        let highlightr = Highlightr()
-        return highlightr?.highlight(text, as: "Swift") ?? NSAttributedString()
+        return NSAttributedString()
     }
     
     @objc func textChanged() {

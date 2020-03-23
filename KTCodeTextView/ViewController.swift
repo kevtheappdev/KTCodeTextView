@@ -7,16 +7,33 @@
 //
 
 import UIKit
-import Highlightr
 
 class ViewController: UIViewController, UITextViewDelegate {
-
-    @IBOutlet weak var sbTextView: KTCodeTextField!
+    let textStorage = KTSyntaxTextStorage()
+    
+    @IBOutlet weak var sbTextView: KTCodeTextView!
+    var textView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        sbTextView.delegate = self
+        
+        // setup textview
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        
+        let textContainer = NSTextContainer()
+        layoutManager.addTextContainer(textContainer)
+        
+        self.textView = UITextView(frame: CGRect.zero, textContainer: textContainer)
+        self.textView.autocapitalizationType = .none
+        self.textView.autocorrectionType = .no
+        self.textView.font = UIFont.systemFont(ofSize: 20)
+        self.textView.smartQuotesType = .no
+        self.view.addSubview(textView)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.textView.frame = sbTextView.frame
     }
 
 
