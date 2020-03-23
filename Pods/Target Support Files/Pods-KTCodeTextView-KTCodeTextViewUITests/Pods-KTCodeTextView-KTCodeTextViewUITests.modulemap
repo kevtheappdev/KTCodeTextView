@@ -1,0 +1,6 @@
+framework module Pods_KTCodeTextView_KTCodeTextViewUITests {
+  umbrella header "Pods-KTCodeTextView-KTCodeTextViewUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
